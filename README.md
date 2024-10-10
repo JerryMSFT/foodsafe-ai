@@ -1,110 +1,111 @@
-# Food Ingredient Analysis Model
+# User Guide: USDA Food Analysis Model
 
 ## Introduction
 
-This tool uses a machine learning model to analyze food ingredients and provide insights about potential dietary considerations. It's designed to help users make informed decisions about their food choices based on ingredient composition.
+The USDA Food Analysis Model is a Python-based tool that uses data from the USDA FoodData Central database to provide insights about various foods. This guide will help you set up and use the tool effectively.
 
-## What This Model Can Do
+## Setup
 
-- Identify potential allergens in foods based on ingredient lists
-- Estimate basic nutritional content (e.g., if a food is likely high in sugar, fat, or protein)
-- Classify foods into dietary categories (e.g., vegan, vegetarian, gluten-free)
-- Suggest possible ingredient substitutions for common dietary restrictions
-- Provide general information about the prevalence of certain ingredients in processed foods
+1. Ensure you have Python installed on your system (version 3.7 or higher recommended).
 
-## What This Model Cannot Do
+2. Install the required packages by running the following command in your terminal:
+   ```
+   pip install pandas numpy scikit-learn requests
+   ```
 
-- Diagnose medical conditions or allergies
-- Predict specific health outcomes like weight gain, fatigue, or disease risk
-- Provide personalized dietary advice
-- Replace the advice of a medical professional or registered dietitian
-- Guarantee the safety or healthfulness of any food product
+3. Download the script file (`usda_food_analysis.py`) and save it to a directory of your choice.
+
+## Running the Script
+
+1. Open a terminal or command prompt.
+
+2. Navigate to the directory containing the `usda_food_analysis.py` file.
+
+3. Run the script using the following command:
+   ```
+   python usda_food_analysis.py
+   ```
+
+4. The script will start by downloading and processing the USDA data. This may take several minutes. Please be patient.
+
+5. Once the data is loaded and processed, you'll see the prompt:
+   ```
+   USDA Food Analysis Model
+   Enter a food name, and I'll provide an analysis based on USDA data.
+   ```
 
 ## How to Use the Model
 
-1. Run the interactive mode of the program.
-2. When prompted, enter a list of ingredients separated by commas.
-3. The model will analyze the ingredients and provide its insights.
+### Entering Food Names
 
-## Example Prompts
+- Type the name of a food and press Enter. For example:
+  ```
+  Enter a food name or 'quit' to exit: Apple
+  ```
 
-Good examples of what to ask:
+- Be as specific as possible. For example, "Red apple" might yield different results from "Green apple".
 
-- "What are the main ingredients in ketchup, and are any common allergens present?"
-- "Is this ingredient list (flour, sugar, butter, eggs) suitable for a vegan diet?"
-- "Based on these ingredients, is this product likely to be high in added sugars?"
-- "What are some gluten-free alternatives to these ingredients: wheat flour, barley malt?"
-- "How common is high fructose corn syrup in this type of product?"
+- If the food isn't found, try alternative names or more general terms. For example, if "Granny Smith apple" isn't found, try "Green apple" or just "Apple".
 
-Avoid asking:
+### Understanding the Output
 
-- "Will eating hot dogs and ketchup make me fat?"
-- "Can these ingredients cause cancer?"
-- "Is this food healthy for me?"
-- "How many calories are in this food?"
-- "Will this food give me energy or make me tired?"
+For each food, the model will provide:
 
-## Interpreting Results
+1. Potential allergens
+2. Estimated nutritional content
+3. Dietary categories (vegan, vegetarian, gluten-free)
+4. Suggested substitutions (if allergens are present)
 
-- The model provides probabilities or likelihoods, not definitive answers.
-- Results should be considered as general guidance, not medical or nutritional advice.
-- Always verify information with reliable sources, especially for health-critical decisions.
+### Checking Ingredient Prevalence
 
-## Limitations and Disclaimers
+After each food analysis, you can check the prevalence of specific ingredients:
 
-- This model is based on general patterns in food ingredients and may not account for all possible variations or special cases.
-- It does not have access to complete nutritional information or serving sizes.
-- The model's knowledge is based on its training data and may not reflect the most current nutritional research or food industry practices.
-- Always read product labels and consult with healthcare professionals for personalized dietary advice.
+- Enter an ingredient name when prompted. For example:
+  ```
+  Enter an ingredient to check its prevalence (or 'quit' to exit): Sugar
+  ```
 
-## Using with PyTorch
+- Type 'quit' to return to the main food entry prompt.
 
-This project uses PyTorch for building and training the machine learning model. Here's how to set up and use the model:
+### Exiting the Program
 
-1. Install PyTorch:
-   ```
-   pip install torch torchvision torchaudio
-   ```
+- Type 'quit' at the main food entry prompt to exit the program.
 
-2. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/foodsafe-ai.git
-   cd foodsafe-ai
-   ```
+## What You Can Ask
 
-3. Install other dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+1. Food Analysis:
+   - You can ask about any food in the USDA database. Examples:
+     - "Apple"
+     - "Chicken breast"
+     - "Whole wheat bread"
+     - "Greek yogurt"
 
-4. Run the training script:
-   ```
-   python train_model.py
-   ```
+2. Ingredient Prevalence:
+   - After a food analysis, you can ask about the prevalence of any ingredient. Examples:
+     - "Sugar"
+     - "Salt"
+     - "Vitamin C"
+     - "Folic acid"
 
-5. Start the interactive mode:
-   ```
-   python interactive_mode.py
-   ```
+## Tips for Effective Use
 
-6. When prompted, enter food ingredients separated by commas.
+- Start with basic, common food names and then get more specific if needed.
+- For packaged or processed foods, try including brand names if known.
+- When checking ingredient prevalence, use both common and scientific names for best results.
+- Remember that the tool's knowledge is based on the USDA database, so very recent food trends or highly specialized products might not be included.
 
-Note: Make sure you have a CUDA-compatible GPU for faster training, although the model can run on CPU as well.
+## Limitations
 
-## Customizing the Model
+- The tool provides general information and should not be used for medical advice.
+- Nutritional estimates are broad categories and not exact measurements.
+- The dietary category classification (vegan, vegetarian, gluten-free) is based on ingredient analysis and may not be 100% accurate for all foods.
 
-You can customize the model architecture in `model.py`. Adjust hyperparameters like learning rate, batch size, and number of epochs in `train_model.py`.
+## Troubleshooting
 
-To use your own dataset:
-1. Prepare your data in a CSV format with columns for ingredients and labels.
-2. Modify the `load_data()` function in `data_loader.py` to load your dataset.
-3. Adjust the `preprocess_ingredients()` function in `utils.py` if your data requires different preprocessing.
+If you encounter any errors:
+1. Ensure all required packages are installed correctly.
+2. Check your internet connection, as the tool needs to download USDA data.
+3. If issues persist, try restarting the script.
 
-## Further Information
-
-For more detailed nutritional information, please consult:
-- USDA FoodData Central: https://fdc.nal.gov/
-- FDA Food Labeling and Nutrition: https://www.fda.gov/food/food-labeling-nutrition
-
-Remember, this tool is meant to provide general insights and should not replace professional medical or nutritional advice.
+For any unresolved issues or questions, please contact the developer.
 
